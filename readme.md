@@ -1,11 +1,10 @@
 <div align="center">
 
 # 🏠 Bengaluru House Price Predictor
-
 **Estimate residential property prices in Bengaluru using Machine Learning**
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-2563eb?style=for-the-badge&logo=render)](https://bengaluru-house-price-prediction-f976.onrender.com)
-[![Python](https://img.shields.io/badge/Python-3.x-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.10.8-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-Backend-000000?style=for-the-badge&logo=flask)](https://flask.palletsprojects.com)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-f7931e?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
 
@@ -43,8 +42,10 @@
 ```
 ├── main.py                        # Flask app — routes & prediction logic
 ├── house_price_predicting.ipynb   # Preprocessing, model selection, training
+├── Bengaluru_House_Data.csv       # Dataset (included)
+├── House_Predicting_Model.pickle  # Trained model (included)
 ├── templates/
-│   └── index.html                 # Frontend UI 
+│   └── index.html                 # Frontend UI
 ├── static/
 │   ├── style.css
 │   └── script.js
@@ -54,43 +55,48 @@
 └── .gitignore
 ```
 
-> `Bengaluru_House_Data.csv` and `House_Predicting_Model.pickle` are excluded from the repo. See setup instructions below.
-
 ---
 
 ## ⚙️ Run Locally
 
+> **Requires Python 3.10.8**
+
 **1. Clone the repo**
 ```bash
 git clone https://github.com/Gyan-Ranjan-01/bengaluru_house_price_prediction
-cd bengaluru-house-price-predictor
+cd bengaluru-house-price-prediction
 ```
 
-**2. Install dependencies**
+**2. (Optional) Create a virtual environment**
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+```
+
+**3. Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-**3. Add the dataset**
-
-Download from [Kaggle](https://www.kaggle.com/datasets/amitabhajoy/bengaluru-house-price-data) and place it in the project root as `Bengaluru_House_Data.csv`.
-
-**4. Generate the model**
-
-Run all cells in `house_price_predicting.ipynb` — this produces `House_Predicting_Model.pickle`.
-
-**5. Start the app**
+**4. Start the app**
 ```bash
 python main.py
 ```
 
 Open `http://localhost:5000` in your browser.
 
+> The dataset (`Bengaluru_House_Data.csv`) and trained model (`House_Predicting_Model.pickle`) are included in the repo — no manual download or notebook run required to get the app running.  
+> Re-run `house_price_predicting.ipynb` only if you want to retrain the model from scratch.
+
 ---
 
 ## ✅ Input Validation
 
 The backend rejects physically implausible inputs before hitting the model:
+
 - `total_sqft` below minimum threshold
 - Bathroom count exceeding BHK + 2
 
